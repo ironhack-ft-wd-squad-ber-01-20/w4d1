@@ -114,3 +114,63 @@ bar();
 // - the global scope
 // - the function (or local) scope:
 //    - when defined in a function, a variable declared with `var` will be available globally in that function and only in that function's body
+
+// String interpolation
+
+const student = {
+  name: "Jason",
+  country: "USA"
+};
+
+// const greeting = "Hello " + student.name + " from " + student.country;
+
+const greeting = `Hello ${student.name} from ${student.country} ${6 * 7}`;
+
+// const content = "<div>\n\
+// <p>\n\
+// <span>foo bar</span>\n\
+// </p>\n\
+// </div>";
+
+const content = `<div>
+<p>
+<span>foo bar</span>
+</p>
+</div>
+`;
+
+// .includes() for strings and arrays will return a boolean true or false depending on if the string or array contains the value that was passed to it
+
+greeting.includes("Hello"); // true
+greeting.includes("hello"); // false -> case sensitive
+greeting.includes("Hello", 1); // false -> the position parameter tells to start searching from that index
+
+["Hello", "World", "!"].includes("!"); // true
+["Hello", "World", "!"].includes("orl"); // false
+
+// more string methods
+
+// .startsWith() for strings returns a boolean true or false depending on if the string starts with a given search string
+
+greeting.startsWith("Hello"); // true
+greeting.startsWith("He"); // true
+greeting.startsWith("hello"); // false
+
+greeting.startsWith("USA", 17); // true -> position where the string should start
+greeting.startsWith("Hello", 17); // false
+
+// .endsWith() for strings returns a boolean true or false depending on if the string ends with a given search string
+
+greeting.endsWith("42"); // true
+
+greeting.endsWith("Hello", 5); // true -> position where the string should end
+
+// string.repeat(n) will return a string with the given string repeated n times
+const chorus = "Because I'm happy. ";
+
+console.log("Chorus lyrics: ", chorus.repeat(27));
+
+// https://www.codewars.com/kata/build-a-square
+// https://gist.github.com/mjarraya/8ca503322dcbcf937ee685b61da8b102
+
+console.clear();
