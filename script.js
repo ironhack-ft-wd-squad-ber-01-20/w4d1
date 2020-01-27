@@ -271,3 +271,124 @@ function sum(a, b, ...numbers) {
 const randomNumbers = [0, 4, 5, 13, -5, 99, -100];
 Math.max(...randomNumbers); // 99 spread
 // Math.max(0, 4, 5, 13, -5, 99, -100);
+
+// https://repl.it/repls/BlissfulExtrasmallPolyhedron
+
+// // up to ES5
+// function User(name, email, age) {
+//   this.name = name;
+//   this.email = email;
+//   this.age = age;
+// }
+
+// User.prototype.displayInfo = function() {
+//   console.log(this.name, this.email, this.age);
+// };
+
+// ES6 +
+// the class keyword is syntactic sugar over the ES5 way of defining classes
+class User {
+  constructor(name, email, age) {
+    this.name = name;
+    this.email = email;
+    this.age = age;
+  }
+  displayInfo() {
+    console.log(this.name, this.email, this.age);
+  }
+}
+
+const user1 = new User("john doe", "john@doe", 42);
+
+// Arrow function
+
+// function declaration
+// function multiply(a, b) {
+//   return a * b;
+// }
+// // function expression
+// const multiply = function(a, b) {
+//   return a * b;
+// };
+
+const multiply = (a, b) => {
+  return a * b;
+};
+
+const divide = (a, b) => a / b; // implicit return
+
+const arrowFunctionSum = (...numbers) =>
+  numbers.reduce((accumulator, value) => accumulator + value, 0);
+
+console.log(multiply(6, 7));
+
+// arrow functions are syntactic sugar over function expressions with a twist
+
+class Counter {
+  constructor() {
+    this.count = 0;
+  }
+
+  increaseCount() {
+    setTimeout(() => {
+      console.log(this);
+      this.count++;
+    }, 1000);
+    // function foo() {
+    //   console.log(this);
+    // }
+    // // foo = foo.bind({ a: 1, b: 2 });
+    // // foo();
+    // const baz = foo.bind({ key: "value" });
+    // baz();
+  }
+}
+
+const counter1 = new Counter();
+
+const decrement = num => num - 1;
+
+// parentheses around parameters are optional if there is only one parameter
+
+const odds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].filter(digit => {
+  return digit % 2 === 1;
+});
+
+// const odds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].filter(function(digit) {
+//   return digit % 2 === 1;
+// });
+
+// Promises
+// A Promise is a JavaScript object representing the eventual completion or failure of an asynchronous operation
+
+const upperCaseNameIn3Sec = name => {
+  return new Promise((resolve, reject) => {
+    if (!name) {
+      return reject(new Error("NO NAME WAS PROVIDED"));
+    }
+
+    setTimeout(() => {
+      resolve(name.toUpperCase());
+    }, 3000);
+  });
+};
+
+upperCaseNameIn3Sec("victoria")
+  .then(value => {
+    console.log("SUCCESS: ", value);
+  })
+  .catch(err => {
+    console.log("FAILURE: ", err);
+  });
+
+// const success = value => {
+//   console.log("SUCCESS: ", value);
+// };
+
+// const failure = error => {
+//   console.log("FAILURE: ", error);
+// };
+
+// upperCaseNameIn3Sec()
+//   .then(success)
+//   .catch(failure);
