@@ -11,8 +11,8 @@ let lastName = "Doe";
 // Uncaught SyntaxError: Identifier 'lastName' has already been declared
 
 // variables declared with `let` or `var` can be re-assigned
-var city = "Paris";
-city = "Berlin";
+// var city = "Paris";
+// city = "Berlin";
 
 let country = "France";
 country = "Germany";
@@ -174,3 +174,100 @@ console.log("Chorus lyrics: ", chorus.repeat(27));
 // https://gist.github.com/mjarraya/8ca503322dcbcf937ee685b61da8b102
 
 console.clear();
+
+// Sets
+// Set is a collection of unique values
+const uniques = new Set([1, 2, 3, 4, 5, 6, 5, 3, 3]);
+const cart = new Set(["potato", "tomato", "carrot", "carrot", "mate"]);
+
+cart.has("potato"); // true
+cart.has("beer"); // false
+cart.size; // 4
+
+// Destructuring
+// Objects
+const campus = {
+  city: "Berlin",
+  bootcamps: ["UX/UI", "WebDev", "Data"]
+};
+
+// const city = campus.city;
+// const bootcamps = campus.bootcamps;
+const { city, bootcamps, studentsCount = 42 } = campus;
+// We are creating variables that bear the same name as the properties in the object that we are destructuring
+
+// const { 🔨, 🔩, 🔧 } = 🧰;
+// const { 👽 } = 🚀
+
+// Arrays
+const numbers = [1, 2, 3, 4];
+// const first = numbers[0];
+// const second = numbers[1];
+// const third = numbers[2];
+const [first, second, third] = numbers;
+
+const letters = ["a", "b", "c", "d"];
+// const bLetter = letters[1];
+// const cLetter = letters[2];
+// we can skip elements
+const [, bLetter, cLetter] = letters;
+
+const colors = ["#F00", "#0F0", "#00F"];
+const [red, green, blue, white = "#FFF"] = colors;
+
+const [f, g = 2, h, j = 1] = [5, 4];
+f; // 5
+g; // 4
+h; // undefined
+j; // 1
+
+// Spread operator
+// returns the content of an array (or of an object) without the array (or object) itself
+
+// we can use it to copy array values
+const numbersCopy = [...numbers];
+// we can use the spread to split a string
+[..."hello"]; // ["h", "e", "l", "l", "o"]
+// we can use it to concatenate arrays
+const reptiles = ["snake", "lizard"];
+const birds = ["eagle", "falcon", "pidgeon"];
+const mammals = ["dog", "cow"];
+
+const animals = [...reptiles, ...birds, ...mammals];
+
+// we can use it to (shallow) copy object properties
+const obj = {
+  a: 1,
+  b: 2
+};
+
+const objCopy = { ...obj };
+
+// we can use it to merge objects
+const obj2 = {
+  c: 3,
+  d: 4
+};
+
+const bigObj = { ...obj, ...obj2, c: 0 };
+
+bigObj.c; // 0
+
+// Rest parameter
+// the rest parameter is a placeholder that allows us to access in the body of the function an array with all the arguments passed from that position
+// Rest parameter must be last formal parameter
+function sum(a, b, ...numbers) {
+  console.log(a, b, numbers);
+  return numbers.reduce(function(acc, val) {
+    return acc + val;
+  }, 0);
+}
+
+// console.log(sum(1, 3, 5));
+// console.log(sum(0, 2));
+// console.log(sum(-5, -5, -5, -5, -5, -5));
+// console.log(sum());
+
+const randomNumbers = [0, 4, 5, 13, -5, 99, -100];
+Math.max(...randomNumbers); // 99 spread
+// Math.max(0, 4, 5, 13, -5, 99, -100);
